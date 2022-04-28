@@ -72,36 +72,76 @@ Por fim, o *schema* completo dos nossos dados ficou assim:
 
 <img width="973" alt="Final data schema on Amplify Studio" src="https://user-images.githubusercontent.com/1771610/165821684-55b97979-0959-42c3-b1ff-e6ededb1911d.png">
 
-### Testar Localmente
+### Deploy na AWS
 
-O próximo passo é testar nas nossas máquinas o back-end que acabamos de criar com Amplify Studio.
+Agora podemos testar os modelos localmente ou fazer o deploy diretamente. Vamos direto para o deploy nesse momento.
 
-Para isso, vamos criar um app React e trabalhar de dentro do diretório dele:
+<img width="1120" alt="Screen Shot 2022-04-28 at 18 53 59" src="https://user-images.githubusercontent.com/1771610/165854047-93665612-3672-433a-884b-984f85d99811.png">
+
+Vamos dar um nome para nosso app e escolher uma região para fazer o deploy:
+
+<img width="881" alt="Screen Shot 2022-04-28 at 18 54 53" src="https://user-images.githubusercontent.com/1771610/165854337-996650cb-5a75-4d2d-b1c8-d387959b9a06.png">
+
+Agora, o Amplify vai começar a fazer o deploy do back-end que definimos:
+
+<img width="553" alt="Screen Shot 2022-04-28 at 18 56 04" src="https://user-images.githubusercontent.com/1771610/165854482-2d99a5e2-83f7-4b99-b38f-088498c99336.png">
+
+Quando tudo estiver pronto, vamos acessar o Amplify Studio em **Launch Studio**:
+
+<img width="1069" alt="Screen Shot 2022-04-28 at 18 56 57" src="https://user-images.githubusercontent.com/1771610/165854545-53036990-8a01-486c-8f7e-e68c65709c04.png">
+
+### Criar Dados
+
+O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns usuários e posts:
+
+- Usuario 1
+  - anacunha
+  - https://github.com/anacunha.png
+
+- Usuario 2
+  - tempestade
+  - https://unsplash.com/photos/75715CVEJhI
+
+- Usuario 3
+  - boris
+  - https://unsplash.com/photos/9LkqymZFLrE
+
+### UI Library
+
+Na seção de **UI Library** do Amplify Studio, vamos duplicar o [template do Figma do Amplify](https://www.figma.com/community/file/1047600760128127424) e modificar um componente para nossa aplicação.
+
+Vamos usar o componente **Ampligram** e adaptá-lo para atender as nossas necessidades. Vamos remover os ícones e renomeá-lo para **PostCard**:
+
+<img width="682" alt="Screen Shot 2022-04-28 at 19 01 25" src="https://user-images.githubusercontent.com/1771610/165855134-dec2b9bb-25b6-4345-9ec2-e14eb73bdfd7.png">
+
+Feito isso, iremos importar o nosso template modificado do Figma de volta no Amplify Studio e aceitaremos as mudanças da UI Library.
+
+<img width="617" alt="Screen Shot 2022-04-28 at 19 02 59" src="https://user-images.githubusercontent.com/1771610/165855210-399b5867-5534-429c-90be-6585fecaf0d6.png">
+
+Agora, vamos associar os dados dos nossos modelos ao componente de UI que acabamos de importar:
+
+<img width="908" alt="Screen Shot 2022-04-28 at 19 13 37" src="https://user-images.githubusercontent.com/1771610/165856429-33db5edd-3a6e-44ae-8a46-7b1ad184198f.png">
+
+### Criando React App
+
+Vamos criar nosso projeto React:
 
 ```shell
 npx create-react-app@latest cityjs-amplify-workshop
 cd cityjs-amplify-workshop
 ```
 
-Para usarmos os comandos do Amplify, precisamos instalar o [Amplify CLI](https://docs.amplify.aws/cli/), uma ferramenta de linha de comando para criar, integrar e gerenciar os serviços de nuvem da AWS usados pela nossa aplicação:
+Vamos instalar nossas dependências. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify.
 
 ```shell
-curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+npm install aws-amplify @aws-amplify/ui-react
 ```
 
-Com Amplify CLI instalado, vamos fazer o `pull` da nossa aplicação criada pelo Amplify Studio para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele busca as mudanças que ocorreram na nossa aplicação hospedada na nuvem e traz essas mudanças para nosso ambiente local:
+Agora, vamos fazer o `pull` da nossa aplicação criada pelo Amplify Studio para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele busca as mudanças que ocorreram na nossa aplicação hospedada na nuvem e traz essas mudanças para nosso ambiente local:
 
 ```shell
-amplify pull --sandboxId <your-sandbox-id>
+amplify pull --appId <appId> --envName <envName>
 ```
-
-Por fim, vamos instalar as dependências necessárias para a nossa aplicação. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify. E o [**typescript**](https://github.com/Microsoft/TypeScript) é necessário pois nossos modelos são gerados usando essa linguagem.
-
-```shell
-npm install aws-amplify typescript
-```
-
-O mais legal é que até agora não temos absolutamente nada rodando na nuvem! Estamos apenas trabalhando localmente. Você nem mesmo precisa de uma conta na AWS até o momento em que vai fazer o deploy da sua aplicação. Essa é uma ótima maneira de experimentar e testar sua aplicação antes de fazer o deploy.
 
 Agora, vamos abrir o nosso projeto em um editor de texto para conferirmos o que foi criado até aqui.
 
@@ -112,51 +152,17 @@ Agora, vamos abrir o nosso projeto em um editor de texto para conferirmos o que 
 Precisamos configurar o Amplify em nosso projeto. Abra o arquivo `src/index.js` e adicione as seguintes linhas:
 
 ```javascript
-import { Amplify } from 'aws-amplify'
-import awsconfig from './aws-exports'
+import { Amplify } from 'aws-amplify';
+import "@aws-amplify/ui-react/styles.css";
+import {AmplifyProvider} from "@aws-amplify/ui-react";
+import awsconfig from './aws-exports';
 
-Amplify.configure(awsconfig)
+Amplify.configure(awsconfig);
 ```
 
-#### Criar Dados
-
-Vamos criar um usuário localmente. Abra o arquivo `src/App.js` e adicione o seguinte:
+E o nosso `<App />` ficará dentro do `<AmplifyProvider>`:
 
 ```javascript
-import { DataStore } from '@aws-amplify/datastore';
-import { User } from './models';
-
-function App() {
-  const createUser = async () => {
-    const newUser = await DataStore.save(
-      new User({
-        username: prompt('username'),
-        photo: prompt('photo')
-      }))
-  };
-
-  return (
-    <button onClick={createUser}>Create User</button>
-  );
-}
-
-export default App;
-```
- 
-----------
-
-```shell
-npm install aws-amplify @aws-amplify/ui-react
-```
-
-```javascript
-import '@aws-amplify/ui-react/styles.css';
-import { Amplify } from 'aws-amplify'
-import awsconfig from './aws-exports'
-import { AmplifyProvider } from '@aws-amplify/ui-react';
-
-Amplify.configure(awsconfig)
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AmplifyProvider>
@@ -165,36 +171,40 @@ root.render(
 );
 ```
 
-Add font to `index.css` file:
+Para finalizar a configuração da UI, no `index.css` adicionamos a fonte usada pelos componentes UI do Amplify:
 
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
 ```
 
-On `App.js`:
+#### Listar Dados com os componentes da UI
+
+Vamos criar um usuário localmente. Abra o arquivo `src/App.js` e adicione o seguinte:
 
 ```javascript
 import { DataStore } from '@aws-amplify/datastore';
-import { Post, User } from './models';
-import { PostCard } from './ui-components'
+import { Post } from './models';
+import { PostCard } from './ui-components';
 
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 
 function App() {
   const [posts, setPosts] = useState([])
 
-  const getPosts = async() => {
-    const data = await DataStore.query(Post);
+  const getPosts = async () => {
+    const data = await DataStore.query(Post)
     setPosts(data)
   }
 
   useEffect(() => {
     getPosts()
-  }, [])
+  })
 
   return (
-    <div>
-      {posts.map(post => <PostCard post={post} user={post.User} key={post.id}/>)}
+    <div className="App">
+      {posts.map(
+        post => <PostCard post={post} user={post.author} key={post.id}/>
+      )}
     </div>
   );
 }

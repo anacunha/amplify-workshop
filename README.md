@@ -98,6 +98,44 @@ npm install aws-amplify typescript
 O mais legal é que até agora não temos absolutamente nada rodando na nuvem! Estamos apenas trabalhando localmente. Você nem mesmo precisa de uma conta na AWS até o momento em que vai fazer o deploy da sua aplicação. Essa é uma ótima maneira de experimentar e testar sua aplicação antes de fazer o deploy.
 
 Agora, vamos abrir o nosso projeto em um editor de texto para conferirmos o que foi criado até aqui.
+
+<img width="768" alt="Screen Shot 2022-04-28 at 16 28 27" src="https://user-images.githubusercontent.com/1771610/165830972-d1a2da5f-1507-48ad-af44-59d461cfa69d.png">
+
+#### Configurar Amplify
+
+Precisamos configurar o Amplify em nosso projeto. Abra o arquivo `src/index.js` e adicione as seguintes linhas:
+
+```javascript
+import { Amplify } from 'aws-amplify'
+import awsconfig from './aws-exports'
+
+Amplify.configure(awsconfig)
+```
+
+#### Criar Dados
+
+Vamos criar um usuário localmente. Abra o arquivo `src/App.js` e adicione o seguinte:
+
+```javascript
+import { DataStore } from '@aws-amplify/datastore';
+import { User } from './models';
+
+function App() {
+  const createUser = async () => {
+    const newUser = await DataStore.save(
+      new User({
+        username: prompt('username'),
+        photo: prompt('photo')
+      }))
+  };
+
+  return (
+    <button onClick={createUser}>Create User</button>
+  );
+}
+
+export default App;
+```
  
 ----------
 

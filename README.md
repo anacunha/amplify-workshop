@@ -68,10 +68,38 @@ Por fim, o *schema* completo dos nossos dados ficou assim:
 
 ### Testar Localmente
 
+O próximo passo é testar nas nossas máquinas o back-end que acabamos de criar com Amplify Studio.
+
+Para isso, vamos criar um app React e trabalhar de dentro do diretório dele:
+
 ```shell
-npx create-react-app@latest cityjs-app
-cd cityjs-app
+npx create-react-app@latest cityjs-amplify-workshop
+cd cityjs-amplify-workshop
 ```
+
+Para usarmos os comandos do Amplify, precisamos instalar o [Amplify CLI](https://docs.amplify.aws/cli/), uma ferramenta de linha de comando para criar, integrar e gerenciar os serviços de nuvem da AWS usados pela nossa aplicação:
+
+```shell
+curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+```
+
+Com Amplify CLI instalado, vamos fazer o `pull` da nossa aplicação criada pelo Amplify Studio para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele busca as mudanças que ocorreram na nossa aplicação hospedada na nuvem e traz essas mudanças para nosso ambiente local:
+
+```shell
+amplify pull --sandboxId <your-sandbox-id>
+```
+
+Por fim, vamos instalar as dependências necessárias para a nossa aplicação. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify. E o [**typescript**](https://github.com/Microsoft/TypeScript) é necessário pois nossos modelos são gerados usando essa linguagem.
+
+```shell
+npm install aws-amplify typescript
+```
+
+O mais legal é que até agora não temos absolutamente nada rodando na nuvem! Estamos apenas trabalhando localmente. Você nem mesmo precisa de uma conta na AWS até o momento em que vai fazer o deploy da sua aplicação. Essa é uma ótima maneira de experimentar e testar sua aplicação antes de fazer o deploy.
+
+Agora, vamos abrir o nosso projeto em um editor de texto para conferirmos o que foi criado até aqui.
+ 
+----------
 
 ```shell
 npm install aws-amplify @aws-amplify/ui-react

@@ -2,6 +2,12 @@
 
 Esse workshop é baseado no [AWS Amplify Fullstack Workshop](https://github.com/aspittel/amplify-workshop) da [Ali Spittel](https://twitter.com/aspittel).
 
+## O que vamos construir?
+
+Vamos usar os recursos do Amplify para construir (com pouco código) um app com uma timeline de posts de usuários:
+
+![Screen Shot 2022-04-28 at 17 37 15](https://user-images.githubusercontent.com/1771610/165851647-e1f35a31-1bf0-4de2-a345-3c4d0f05ec1a.png)
+
 ## O que é o Amplify?
 
 O [AWS Amplify](https://docs.amplify.aws/) é um conjunto de ferramentas e serviços que ajuda desenvolvevores front-end web e mobile a criarem aplicações full-stack na AWS.

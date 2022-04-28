@@ -2,8 +2,6 @@
 
 Esse workshop é baseado no [AWS Amplify Fullstack Workshop](https://github.com/aspittel/amplify-workshop) da [Ali Spittel](https://twitter.com/aspittel).
 
-## O que é Computação em Nuvem?
-
 ## O que é o Amplify?
 
 O [AWS Amplify](https://docs.amplify.aws/) é um conjunto de ferramentas e serviços que ajuda desenvolvevores front-end web e mobile a criarem aplicações full-stack na AWS.
@@ -16,16 +14,13 @@ Também é possível usar o Amplify para hospedar aplicações web estáticas co
 
 A ideia do Amplify é abstrair os serviços específicos que estão por trás das funcionalidades de back-end e focar no desenvolvimento da aplicação em si. E, Como Amplify não requer conhecimento muito profundo da AWS, é um ótimo lugar pra começar a desenvolver aplicações full-stack na nuvem.
 
-- Amplify Framework (open source)
-  - CLI: adicionar e configurar diferentes recursos ao back-end nossa aplicação (Auth, API)
-  - Libs: pra diferentes clientes, que fazem a integração entre o front-end da aplicação e os recursos no back-end
-  - UI Components: simplificam a construção de aplicações responsivas e acessíveis (e.g. componente pra autenticação, UI de chatbot, temas, etc)
-- Serviço da AWS
-  - Amplify Console
-
 ### Amplify Studio
 
+O [Amplify Studio](https://docs.amplify.aws/console/) é um ambiente de desenvolvimento visual para criação de aplicações full-stack web e mobile. Ele é uma camada de abstração em cima do [Amplify CLI](https://docs.amplify.aws/cli/) e nos permite criar recursos de back-end, componentes de UI e gerenciar dados e usuários da nossa aplicação através de uma UI.
+
 ## Passo a Passo
+
+### Modelagem de Dados
 
 [https://sandbox.amplifyapp.com](https://sandbox.amplifyapp.com)
 

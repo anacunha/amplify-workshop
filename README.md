@@ -236,3 +236,11 @@ export default App;
 - IPA:
   - https://unsplash.com/photos/arDu4d4xc4E
   - https://images.unsplash.com/photo-1561559094-5838ef543170?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80
+
+- Pizza:
+  - https://unsplash.com/photos/Oxb84ENcFfU
+  - https://images.unsplash.com/photo-1590947132387-155cc02f3212?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+
+- Mojito
+  - https://unsplash.com/photos/gtDYwUIr9Vg
+  - https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80

@@ -217,3 +217,22 @@ export default App;
 - https://github.com/aspittel/amplify-workshop
 - https://docs.amplify.aws/console/
 - https://ui.docs.amplify.aws/getting-started/installation
+
+
+### Image Credits
+
+- Brigadeiro: 
+  - https://unsplash.com/photos/jGh5Qj4jQ-s 
+  - https://images.unsplash.com/photo-1630953900039-960a64b49176?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80
+
+- Tacos:
+  - https://unsplash.com/photos/iU26ZSJh9yw
+  - https://images.unsplash.com/photo-1627564803215-ad55bad5c5ea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80
+
+- Carbonara:
+  -  https://unsplash.com/photos/dvgjof0_TP8
+  -  https://images.unsplash.com/photo-1608756687911-aa1599ab3bd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80
+
+- IPA:
+  - https://unsplash.com/photos/arDu4d4xc4E
+  - https://images.unsplash.com/photo-1561559094-5838ef543170?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80

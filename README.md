@@ -221,6 +221,12 @@ export default App;
 
 ## Recipes Demos
 
+### Model
+
+![Screen Shot 2022-04-29 at 21 20 11](https://user-images.githubusercontent.com/1771610/166082965-8d80140f-3a44-4bd0-9c66-4a2dc9bd46e9.png)
+
+### Data
+
 `App.js`:
 
 ```javascript

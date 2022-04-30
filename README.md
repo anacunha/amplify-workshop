@@ -219,6 +219,52 @@ export default App;
 - https://ui.docs.amplify.aws/getting-started/installation
 
 
+## Recipes Demos
+
+`App.js`:
+
+```javascript
+import { DataStore } from '@aws-amplify/datastore';
+import { useEffect, useState } from 'react';
+import { Recipe } from './models';
+
+function App() {
+  const [recipes, setRecipes] = useState([])
+
+  const getRecipes = async() => {
+    const models = await DataStore.query(Recipe);
+    setRecipes(models);
+  }
+
+  useEffect(() => {getRecipes()})
+  const createRecipe = async() => {
+    const recipe = {
+      name: prompt('Name'),
+      description: prompt('Description'),
+      photo: prompt('Photo')
+    }
+
+    await DataStore.save(
+      new Recipe(recipe)
+    );
+  }
+  return (
+    <div className="App">
+      <button onClick={createRecipe}>Create Recipe</button>
+      {recipes.map(
+        recipe => <div key={recipe.id}>
+          <h1>{recipe.name}</h1>
+          <p>{recipe.description}</p>
+          <img src={recipe.photo} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
+```
+
 ### Image Credits
 
 - Brigadeiro: 

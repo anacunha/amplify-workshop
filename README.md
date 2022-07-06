@@ -99,6 +99,30 @@ Agora, vamos fazer o `pull` do nosso modelo de dados criado no [Sandbox do Ampli
 amplify pull --sandboxId <sandboxId>
 ```
 
+O Amplify criou o nosso schema do nosso modelo de dados em GraphQL no arquivo `schema.graphql` dentro do diretório `amplify/backend/api/amplifyDatasource/`:
+
+```graphql
+enum ContentType {
+  IMAGE
+  VIDEO
+}
+
+type Post @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  description: String
+  postedAt: AWSDate!
+  contentSource: AWSURL!
+  contentType: ContentType!
+  author: User @hasOne
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String!
+  photo: AWSURL
+}
+```
+
 #### Instalar Library do Amplify
 
 Vamos instalar a library do Amplify. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify.

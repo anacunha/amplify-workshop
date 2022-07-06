@@ -223,19 +223,18 @@ Quando tudo estiver pronto, vamos acessar o Amplify Studio em **Launch Studio**:
 
 ### Criar Dados
 
-O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns usuários e posts:
+O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns usuários e posts.
 
-- Usuario 1
-  - anacunha
-  - https://github.com/anacunha.png
+#### Usuários
 
-- Usuario 2
-  - tempestade
-  - https://unsplash.com/photos/75715CVEJhI
+| Username   | Photo                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------ |
+| anacunha   | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Ana.jpg        |
+| boris      | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Boris.jpg      |
+| perola     | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Perola.jpg     |
+| tempestade | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Tempestade.jpg |
 
-- Usuario 3
-  - boris
-  - https://unsplash.com/photos/9LkqymZFLrE
+#### Posts
 
 ### UI Library
 

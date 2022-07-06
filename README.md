@@ -261,7 +261,13 @@ Agora, vamos associar os dados dos nossos modelos ao componente de UI que acabam
 
 <img width="908" alt="Screen Shot 2022-04-28 at 19 13 37" src="https://user-images.githubusercontent.com/1771610/165856429-33db5edd-3a6e-44ae-8a46-7b1ad184198f.png">
 
-### Criando React App
+### Pull do Projeto
+
+Agora que nossa aplicação foi deployada na AWS, precisamos rodar o comando `amplify pull` para trazers as mudanças que ocorreram na nossa aplicação na nuvem para o nosso ambiente local. De dentro do diretório do nosso projeto, rode:
+
+```shell
+amplify pull --appId <appId> --envName <envName>
+```
 
 Vamos criar nosso projeto React:
 
@@ -276,7 +282,7 @@ Vamos instalar nossas dependências. O [**aws-amplify**](https://github.com/aws-
 npm install aws-amplify @aws-amplify/ui-react
 ```
 
-Agora, vamos fazer o `pull` da nossa aplicação criada pelo Amplify Studio para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele busca as mudanças que ocorreram na nossa aplicação hospedada na nuvem e traz essas mudanças para nosso ambiente local:
+Agora, vamos fazer o `pull` da nossa aplicação criada pelo Amplify Studio para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele busca as mudanças 
 
 ```shell
 amplify pull --appId <appId> --envName <envName>
@@ -284,7 +290,6 @@ amplify pull --appId <appId> --envName <envName>
 
 Agora, vamos abrir o nosso projeto em um editor de texto para conferirmos o que foi criado até aqui.
 
-<img width="768" alt="Screen Shot 2022-04-28 at 16 28 27" src="https://user-images.githubusercontent.com/1771610/165830972-d1a2da5f-1507-48ad-af44-59d461cfa69d.png">
 
 #### Configurar Amplify
 

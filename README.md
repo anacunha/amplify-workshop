@@ -236,6 +236,15 @@ O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns
 
 #### Posts
 
+
+| Author     | Description                     | Posted At  | Content Source | Content Type |
+| ---------- | ------------------------------- | ---------- | -------------- | ------------ |
+| anacunha   | Meetup do AWS UG Blumenau hoje! | 2022/07/06 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-meetup.jpg | IMAGE        |
+| anacunha   | Almoço no Seu Porco! 🐷         | 2022/07/06 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-almoco.jpg                | IMAGE        |
+| boris      | Relaxando no tapete ergonômico  | 2022/07/05 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-relaxando.jpg               | IMAGE        |
+| perola     | Sono de beleza 😴               | 2022/07/04 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-sono.jpg               | IMAGE        |
+| tempestade | Solzinho matinal ☀️             | 2022/07/03 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-sol.jpg               | IMAGE        |
+
 ### UI Library
 
 Na seção de **UI Library** do Amplify Studio, vamos duplicar o [template do Figma do Amplify](https://www.figma.com/community/file/1047600760128127424) e modificar um componente para nossa aplicação.

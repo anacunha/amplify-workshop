@@ -109,13 +109,49 @@ npm install aws-amplify
 
 #### Configurar Amplify na Aplicação
 
-Por fim, vamos configurar o Amplify na nossa aplicação React. Para isso, adicione o seguinte código no topo do seu arquivo `index.js`:
+Por fim, vamos configurar o Amplify na nossa aplicação React. Para isso, adicione o seguinte código no topo do arquivo `src/index.js`:
 
 ```javascript
 import { Amplify } from "aws-amplify";
 import awsconfig from "./aws-exports";
 
 Amplify.configure(awsconfig);
+```
+
+#### Criar Usuários Localmente
+
+Vamos criar um usuário localmente. No arquivo `src/App.js`, vamos retornar um botão para criação de usuários:
+
+```javascript
+function App() {
+  return (
+    <div className="App">
+      <button onClick={createUser}>Criar Usuário</button>
+    </div>
+  );
+}
+```
+
+E vamos usar o `DataStore` do Amplify para criar um novo usuário:
+
+```javascript
+import { DataStore } from '@aws-amplify/datastore';
+import { User } from './models';
+
+...
+
+const createUser = async () => {
+   const newUser = await DataStore.save(new User({
+      username: prompt('username'),
+      photo: prompt('photo')
+   }))
+}
+```
+
+Teste sua aplicação localmente:
+
+```shell
+npm start
 ```
 
 ### Deploy na AWS

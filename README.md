@@ -12,7 +12,7 @@ Vamos usar os recursos do [Amplify](https://docs.amplify.aws/) para construir (c
 
 O [AWS Amplify](https://docs.amplify.aws/) é um conjunto de ferramentas e serviços que ajuda desenvolvevores front-end web e mobile a criarem aplicações full-stack na AWS.
 
-Com o Amplify, desenvolvedores podem criar recursos de back-end (como armazenamento de arquivos, autenticação e armazenamento de dados) usando a linha de comando ou uma interface visual e, então, fazer o deploy desses recursos na nuvem.
+Com o Amplify, desenvolvedores podem criar recursos de back-end (como persistência de dados, armazenamento de arquivos, autenticação e autorização) usando a linha de comando ou uma interface visual e, então, fazer o deploy desses recursos na nuvem.
 
 Em seguida, desenvolvedores podem conectar seu front-end aos recursos de back-end criados ou a recursos já existentes na AWS usando as [bibliotecas do Amplify](https://docs.amplify.aws/lib/).
 

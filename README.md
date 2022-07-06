@@ -150,11 +150,7 @@ function App() {
 }
 ```
 
-Teste sua aplicação localmente:
-
-```shell
-npm start
-```
+Teste sua aplicação localmente executando `npm start` e inspecionando o console do browser.
 
 #### Buscar Usuários
 
@@ -177,29 +173,29 @@ function App() {
 }
 ```
 
-Teste sua aplicação localmente:
-
-```shell
-npm start
-```
+Teste sua aplicação localmente executando `npm start` e inspecionando o console do browser.
 
 ### Deploy na AWS
 
-Agora podemos testar os modelos localmente ou fazer o deploy diretamente. Vamos direto para o deploy nesse momento.
+Agora que já testamos nosso modelo de dados localmente, o próximo passo é fazer o deploy da nossa aplicação na AWS. Para isso, clique em **Deploy to AWS**:
+
+<img width="836" alt="deploy-to-aws" src="https://user-images.githubusercontent.com/1771610/177627217-1d3d266c-9179-4030-8c54-5bcb9b8bf7d9.png">
+
+Use sua conta AWS já existente ou crie uma nova:
 
 <img width="1120" alt="Screen Shot 2022-04-28 at 18 53 59" src="https://user-images.githubusercontent.com/1771610/165854047-93665612-3672-433a-884b-984f85d99811.png">
 
 Vamos dar um nome para nosso app e escolher uma região para fazer o deploy:
 
-<img width="881" alt="Screen Shot 2022-04-28 at 18 54 53" src="https://user-images.githubusercontent.com/1771610/165854337-996650cb-5a75-4d2d-b1c8-d387959b9a06.png">
+<img width="936" alt="app-details" src="https://user-images.githubusercontent.com/1771610/177627906-e3011202-db0a-4782-a7de-9573bd518695.png">
 
 Agora, o Amplify vai começar a fazer o deploy do back-end que definimos:
 
-<img width="553" alt="Screen Shot 2022-04-28 at 18 56 04" src="https://user-images.githubusercontent.com/1771610/165854482-2d99a5e2-83f7-4b99-b38f-088498c99336.png">
+<img width="633" alt="initialize-backend-environment" src="https://user-images.githubusercontent.com/1771610/177627947-0c8c8dbc-4cdd-47d1-80db-98c80d3909e0.png">
 
 Quando tudo estiver pronto, vamos acessar o Amplify Studio em **Launch Studio**:
 
-<img width="1069" alt="Screen Shot 2022-04-28 at 18 56 57" src="https://user-images.githubusercontent.com/1771610/165854545-53036990-8a01-486c-8f7e-e68c65709c04.png">
+<img width="1167" alt="launch-studio" src="https://user-images.githubusercontent.com/1771610/177628110-c5fe881d-4acb-46f6-94c6-ff363d69d28c.png">
 
 ### Criar Dados
 

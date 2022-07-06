@@ -269,42 +269,22 @@ Agora que nossa aplicação foi deployada na AWS, precisamos rodar o comando `am
 amplify pull --appId <appId> --envName <envName>
 ```
 
-Vamos criar nosso projeto React:
+### Componentes de UI
+
+Instalar a UI library do Amplify:
 
 ```shell
-npx create-react-app@latest cityjs-amplify-workshop
-cd cityjs-amplify-workshop
+npm install @aws-amplify/ui-react
 ```
 
-Vamos instalar nossas dependências. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify.
-
-```shell
-npm install aws-amplify @aws-amplify/ui-react
-```
-
-Agora, vamos fazer o `pull` da nossa aplicação criada pelo Amplify Studio para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele busca as mudanças 
-
-```shell
-amplify pull --appId <appId> --envName <envName>
-```
-
-Agora, vamos abrir o nosso projeto em um editor de texto para conferirmos o que foi criado até aqui.
-
-
-#### Configurar Amplify
-
-Precisamos configurar o Amplify em nosso projeto. Abra o arquivo `src/index.js` e adicione as seguintes linhas:
+Configure a UI library no `src/index.js`:
 
 ```javascript
-import { Amplify } from 'aws-amplify';
 import "@aws-amplify/ui-react/styles.css";
 import {AmplifyProvider} from "@aws-amplify/ui-react";
-import awsconfig from './aws-exports';
-
-Amplify.configure(awsconfig);
 ```
 
-E o nosso `<App />` ficará dentro do `<AmplifyProvider>`:
+E deixe o `<App />` ficará dentro do `<AmplifyProvider>`:
 
 ```javascript
 const root = ReactDOM.createRoot(document.getElementById('root'));

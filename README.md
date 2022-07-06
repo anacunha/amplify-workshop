@@ -118,7 +118,7 @@ import awsconfig from "./aws-exports";
 Amplify.configure(awsconfig);
 ```
 
-#### Criar Usuários Localmente
+#### Criar Usuários
 
 Vamos criar um usuário localmente. No arquivo `src/App.js`, vamos retornar um botão para criação de usuários:
 
@@ -153,6 +153,26 @@ Teste sua aplicação localmente:
 ```shell
 npm start
 ```
+
+#### Buscar Usuários
+
+Também vamos usar o [`useEffect`](https://reactjs.org/docs/hooks-effect.html) do React para buscar os usuários ao carregar a página. No arquivo `src/App.js`:
+
+```javascript
+import { useEffect } from 'react';
+
+...
+
+useEffect(() => {
+   const pullData = async () => {
+      const models = await DataStore.query(User);
+      console.log(models);
+   }
+   pullData();
+})
+```
+
+
 
 ### Deploy na AWS
 

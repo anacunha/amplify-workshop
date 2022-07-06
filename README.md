@@ -303,7 +303,8 @@ Para finalizar a configuração da UI, no `index.css` adicionamos a fonte usada 
 
 #### Listar Dados com os componentes da UI
 
-Vamos criar um usuário localmente. Abra o arquivo `src/App.js` e adicione o seguinte:
+Agora vamos usar o Componente de UI do Post para mostrar os posts na nossa aplicação.
+Abra o arquivo `src/App.js` e adicione o seguinte:
 
 ```javascript
 import { DataStore } from '@aws-amplify/datastore';

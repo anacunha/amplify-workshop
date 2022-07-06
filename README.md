@@ -138,13 +138,15 @@ E vamos usar o `DataStore` do Amplify para criar um novo usuário:
 import { DataStore } from '@aws-amplify/datastore';
 import { User } from './models';
 
-...
-
-const createUser = async () => {
-   const newUser = await DataStore.save(new User({
-      username: prompt('username'),
-      photo: prompt('photo')
-   }))
+function App() {
+  const createUser = async () => {
+     const newUser = await DataStore.save(new User({
+        username: prompt('username'),
+        photo: prompt('photo')
+     }))
+  }
+  
+  ...
 }
 ```
 
@@ -161,18 +163,25 @@ Também vamos usar o [`useEffect`](https://reactjs.org/docs/hooks-effect.html) d
 ```javascript
 import { useEffect } from 'react';
 
-...
-
-useEffect(() => {
-   const pullData = async () => {
-      const models = await DataStore.query(User);
-      console.log(models);
-   }
-   pullData();
-})
+function App() {
+  const getUsers = async() => {
+     const models = await DataStore.query(User);
+     console.log(models);
+  }
+  
+  useEffect(() => { 
+    pullData(); 
+  })
+  
+  ...
+}
 ```
 
+Teste sua aplicação localmente:
 
+```shell
+npm start
+```
 
 ### Deploy na AWS
 

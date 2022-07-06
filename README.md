@@ -337,6 +337,48 @@ function App() {
 export default App;
 ```
 
+### Autenticação
+
+```shell
+amplify add auth
+```
+
+```shell
+amplify push
+```
+
+```javascript
+import './App.css';
+import { DataStore } from '@aws-amplify/datastore';
+import { Post } from './models';
+import { useEffect, useState } from 'react';
+import { PostCard } from './ui-components';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+
+function App() {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = async() => {
+    const data = await DataStore.query(Post);
+    setPosts(data);
+  }
+
+  useEffect(() => {
+    getPosts();
+  })
+
+  return (
+    <div className="App">
+      {posts.map(
+        post => <PostCard post={post} user={post.author} key={post.id} />
+      )}
+    </div>
+  );
+}
+
+export default withAuthenticator(App);
+```
+
 ### Resources
 
 - https://github.com/aspittel/amplify-workshop

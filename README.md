@@ -72,6 +72,52 @@ Por fim, o *schema* completo dos nossos dados ficou assim:
 
 <img width="973" alt="Final data schema on Amplify Studio" src="https://user-images.githubusercontent.com/1771610/165821684-55b97979-0959-42c3-b1ff-e6ededb1911d.png">
 
+### Teste Local
+
+#### Instalar Amplify CLI
+
+O primeiro passo para testar seu modelo de dados localmente é instalar o [Amplify CLI](https://docs.amplify.aws/cli/start/install/):
+
+```shell
+curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+```
+
+#### Criar React App
+
+Em seguida, vamos criar um novo projeto React e trabalhar de dentro deste diretório:
+
+```shell
+npx create-react-app@latest amplify-workshop
+cd amplify-workshop
+```
+
+#### Pull do Modelo de Dados
+
+Agora, vamos fazer o `pull` do nosso modelo de dados criado no [Sandbox do Amplify](https://sandbox.amplifyapp.com/) para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele sincroniza nossa amplicação local com a nossa aplicação criada no [Sandbox](https://sandbox.amplifyapp.com/):
+
+```shell
+amplify pull --sandboxId <sandboxId>
+```
+
+#### Instalar Library do Amplify
+
+Vamos instalar a library do Amplify. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify.
+
+```shell
+npm install aws-amplify
+```
+
+#### Configurar Amplify na Aplicação
+
+Por fim, vamos configurar o Amplify na nossa aplicação React. Para isso, adicione o seguinte código no topo do seu arquivo `index.js`:
+
+```javascript
+import { Amplify } from "aws-amplify";
+import awsconfig from "./aws-exports";
+
+Amplify.configure(awsconfig);
+```
+
 ### Deploy na AWS
 
 Agora podemos testar os modelos localmente ou fazer o deploy diretamente. Vamos direto para o deploy nesse momento.

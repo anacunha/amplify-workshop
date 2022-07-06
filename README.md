@@ -1,6 +1,6 @@
-# Full Stack Application with AWS Amplify - Workshop
+# Aplicação Full Stack com AWS Amplify
 
-Esse workshop é baseado no [AWS Amplify Fullstack Workshop](https://github.com/aspittel/amplify-workshop) da [Ali Spittel](https://twitter.com/aspittel).
+Este conteúdo é baseado no [AWS Amplify Fullstack Workshop](https://github.com/aspittel/amplify-workshop) da [Ali Spittel](https://twitter.com/aspittel).
 
 ## O que vamos construir?
 
@@ -12,7 +12,7 @@ Vamos usar os recursos do [Amplify](https://docs.amplify.aws/) para construir (c
 
 O [AWS Amplify](https://docs.amplify.aws/) é um conjunto de ferramentas e serviços que ajuda desenvolvevores front-end web e mobile a criarem aplicações full-stack na AWS.
 
-Com o Amplify, desenvolvedores podem criar recursos de back-end (como armazenamento de arquivos, autenticação e armazenamento de dados) usando a linha de comando ou uma interface visual e, então, fazer o deploy desses recursos na nuvem.
+Com o Amplify, desenvolvedores podem criar recursos de back-end (como persistência de dados, armazenamento de arquivos, autenticação e autorização) usando a linha de comando ou uma interface visual e, então, fazer o deploy desses recursos na nuvem.
 
 Em seguida, desenvolvedores podem conectar seu front-end aos recursos de back-end criados ou a recursos já existentes na AWS usando as [bibliotecas do Amplify](https://docs.amplify.aws/lib/).
 
@@ -72,39 +72,178 @@ Por fim, o *schema* completo dos nossos dados ficou assim:
 
 <img width="973" alt="Final data schema on Amplify Studio" src="https://user-images.githubusercontent.com/1771610/165821684-55b97979-0959-42c3-b1ff-e6ededb1911d.png">
 
+### Teste Local
+
+#### Instalar Amplify CLI
+
+O primeiro passo para testar seu modelo de dados localmente é instalar o [Amplify CLI](https://docs.amplify.aws/cli/start/install/):
+
+```shell
+curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+```
+
+#### Criar React App
+
+Em seguida, vamos criar um novo projeto React e trabalhar de dentro deste diretório:
+
+```shell
+npx create-react-app@latest amplify-workshop
+cd amplify-workshop
+```
+
+#### Pull do Modelo de Dados
+
+Agora, vamos fazer o `pull` do nosso modelo de dados criado no [Sandbox do Amplify](https://sandbox.amplifyapp.com/) para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele sincroniza nossa amplicação local com a nossa aplicação criada no [Sandbox](https://sandbox.amplifyapp.com/):
+
+```shell
+amplify pull --sandboxId <sandboxId>
+```
+
+O Amplify criou o nosso schema do nosso modelo de dados em GraphQL no arquivo `schema.graphql` dentro do diretório `amplify/backend/api/amplifyDatasource/`:
+
+```graphql
+enum ContentType {
+  IMAGE
+  VIDEO
+}
+
+type Post @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  description: String
+  postedAt: AWSDate!
+  contentSource: AWSURL!
+  contentType: ContentType!
+  author: User @hasOne
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String!
+  photo: AWSURL
+}
+```
+
+#### Instalar Library do Amplify
+
+Vamos instalar a library do Amplify. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify.
+
+```shell
+npm install aws-amplify
+```
+
+#### Configurar Amplify na Aplicação
+
+Por fim, vamos configurar o Amplify na nossa aplicação React. Para isso, adicione o seguinte código no topo do arquivo `src/index.js`:
+
+```javascript
+import { Amplify } from "aws-amplify";
+import awsconfig from "./aws-exports";
+
+Amplify.configure(awsconfig);
+```
+
+#### Criar Usuários
+
+Vamos criar um usuário localmente. No arquivo `src/App.js`, vamos retornar um botão para criação de usuários:
+
+```javascript
+function App() {
+  return (
+    <div className="App">
+      <button onClick={createUser}>Criar Usuário</button>
+    </div>
+  );
+}
+```
+
+E vamos usar o `DataStore` do Amplify para criar um novo usuário:
+
+```javascript
+import { DataStore } from '@aws-amplify/datastore';
+import { User } from './models';
+
+function App() {
+  const createUser = async () => {
+     const newUser = await DataStore.save(new User({
+        username: prompt('username'),
+        photo: prompt('photo')
+     }))
+  }
+  
+  ...
+}
+```
+
+Teste sua aplicação localmente executando `npm start` e inspecionando o console do browser.
+
+#### Buscar Usuários
+
+Também vamos usar o [`useEffect`](https://reactjs.org/docs/hooks-effect.html) do React para buscar os usuários ao carregar a página. No arquivo `src/App.js`:
+
+```javascript
+import { useEffect } from 'react';
+
+function App() {
+  const getUsers = async() => {
+     const models = await DataStore.query(User);
+     console.log(models);
+  }
+  
+  useEffect(() => { 
+    pullData(); 
+  })
+  
+  ...
+}
+```
+
+Teste sua aplicação localmente executando `npm start` e inspecionando o console do browser.
+
 ### Deploy na AWS
 
-Agora podemos testar os modelos localmente ou fazer o deploy diretamente. Vamos direto para o deploy nesse momento.
+Agora que já testamos nosso modelo de dados localmente, o próximo passo é fazer o deploy da nossa aplicação na AWS. Para isso, clique em **Deploy to AWS**:
+
+<img width="836" alt="deploy-to-aws" src="https://user-images.githubusercontent.com/1771610/177627217-1d3d266c-9179-4030-8c54-5bcb9b8bf7d9.png">
+
+Use sua conta AWS já existente ou crie uma nova:
 
 <img width="1120" alt="Screen Shot 2022-04-28 at 18 53 59" src="https://user-images.githubusercontent.com/1771610/165854047-93665612-3672-433a-884b-984f85d99811.png">
 
 Vamos dar um nome para nosso app e escolher uma região para fazer o deploy:
 
-<img width="881" alt="Screen Shot 2022-04-28 at 18 54 53" src="https://user-images.githubusercontent.com/1771610/165854337-996650cb-5a75-4d2d-b1c8-d387959b9a06.png">
+<img width="936" alt="app-details" src="https://user-images.githubusercontent.com/1771610/177627906-e3011202-db0a-4782-a7de-9573bd518695.png">
 
 Agora, o Amplify vai começar a fazer o deploy do back-end que definimos:
 
-<img width="553" alt="Screen Shot 2022-04-28 at 18 56 04" src="https://user-images.githubusercontent.com/1771610/165854482-2d99a5e2-83f7-4b99-b38f-088498c99336.png">
+<img width="633" alt="initialize-backend-environment" src="https://user-images.githubusercontent.com/1771610/177627947-0c8c8dbc-4cdd-47d1-80db-98c80d3909e0.png">
 
 Quando tudo estiver pronto, vamos acessar o Amplify Studio em **Launch Studio**:
 
-<img width="1069" alt="Screen Shot 2022-04-28 at 18 56 57" src="https://user-images.githubusercontent.com/1771610/165854545-53036990-8a01-486c-8f7e-e68c65709c04.png">
+<img width="1167" alt="launch-studio" src="https://user-images.githubusercontent.com/1771610/177628110-c5fe881d-4acb-46f6-94c6-ff363d69d28c.png">
 
 ### Criar Dados
 
-O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns usuários e posts:
+O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns usuários e posts.
 
-- Usuario 1
-  - anacunha
-  - https://github.com/anacunha.png
+#### Usuários
 
-- Usuario 2
-  - tempestade
-  - https://unsplash.com/photos/75715CVEJhI
+| Username   | Photo                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------ |
+| anacunha   | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Ana.jpg        |
+| boris      | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Boris.jpg      |
+| perola     | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Perola.jpg     |
+| tempestade | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Tempestade.jpg |
 
-- Usuario 3
-  - boris
-  - https://unsplash.com/photos/9LkqymZFLrE
+#### Posts
+
+
+| Author     | Description                     | Posted At  | Content Source | Content Type |
+| ---------- | ------------------------------- | ---------- | -------------- | ------------ |
+| anacunha   | Meetup do AWS UG Blumenau hoje! | 2022/07/06 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-meetup.jpg | IMAGE        |
+| anacunha   | Almoço no Seu Porco! 🐷         | 2022/07/06 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-almoco.jpg                | IMAGE        |
+| boris      | Relaxando no tapete ergonômico  | 2022/07/05 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-relaxando.jpg               | IMAGE        |
+| perola     | Sono de beleza 😴               | 2022/07/04 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-sono.jpg               | IMAGE        |
+| tempestade | Solzinho matinal ☀️             | 2022/07/03 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-sol.jpg               | IMAGE        |
 
 ### UI Library
 
@@ -122,45 +261,30 @@ Agora, vamos associar os dados dos nossos modelos ao componente de UI que acabam
 
 <img width="908" alt="Screen Shot 2022-04-28 at 19 13 37" src="https://user-images.githubusercontent.com/1771610/165856429-33db5edd-3a6e-44ae-8a46-7b1ad184198f.png">
 
-### Criando React App
+### Pull do Projeto
 
-Vamos criar nosso projeto React:
-
-```shell
-npx create-react-app@latest cityjs-amplify-workshop
-cd cityjs-amplify-workshop
-```
-
-Vamos instalar nossas dependências. O [**aws-amplify**](https://github.com/aws-amplify/amplify-js) é a biblioteca JavaScript que nos dá acesso às funcionalidades do Amplify.
-
-```shell
-npm install aws-amplify @aws-amplify/ui-react
-```
-
-Agora, vamos fazer o `pull` da nossa aplicação criada pelo Amplify Studio para o nosso ambiente local. O comando [`amplify pull`](https://docs.amplify.aws/cli/start/workflows/#amplify-pull) funciona de maneira semalhante a um `git pull`. Ele busca as mudanças que ocorreram na nossa aplicação hospedada na nuvem e traz essas mudanças para nosso ambiente local:
+Agora que nossa aplicação foi deployada na AWS, precisamos rodar o comando `amplify pull` para trazers as mudanças que ocorreram na nossa aplicação na nuvem para o nosso ambiente local. De dentro do diretório do nosso projeto, rode:
 
 ```shell
 amplify pull --appId <appId> --envName <envName>
 ```
 
-Agora, vamos abrir o nosso projeto em um editor de texto para conferirmos o que foi criado até aqui.
+### Componentes de UI
 
-<img width="768" alt="Screen Shot 2022-04-28 at 16 28 27" src="https://user-images.githubusercontent.com/1771610/165830972-d1a2da5f-1507-48ad-af44-59d461cfa69d.png">
+Instalar a UI library do Amplify:
 
-#### Configurar Amplify
-
-Precisamos configurar o Amplify em nosso projeto. Abra o arquivo `src/index.js` e adicione as seguintes linhas:
-
-```javascript
-import { Amplify } from 'aws-amplify';
-import "@aws-amplify/ui-react/styles.css";
-import {AmplifyProvider} from "@aws-amplify/ui-react";
-import awsconfig from './aws-exports';
-
-Amplify.configure(awsconfig);
+```shell
+npm install @aws-amplify/ui-react
 ```
 
-E o nosso `<App />` ficará dentro do `<AmplifyProvider>`:
+Configure a UI library no `src/index.js`:
+
+```javascript
+import "@aws-amplify/ui-react/styles.css";
+import {AmplifyProvider} from "@aws-amplify/ui-react";
+```
+
+E deixe o `<App />` ficará dentro do `<AmplifyProvider>`:
 
 ```javascript
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -179,7 +303,8 @@ Para finalizar a configuração da UI, no `index.css` adicionamos a fonte usada 
 
 #### Listar Dados com os componentes da UI
 
-Vamos criar um usuário localmente. Abra o arquivo `src/App.js` e adicione o seguinte:
+Agora vamos usar o Componente de UI do Post para mostrar os posts na nossa aplicação.
+Abra o arquivo `src/App.js` e adicione o seguinte:
 
 ```javascript
 import { DataStore } from '@aws-amplify/datastore';
@@ -210,6 +335,48 @@ function App() {
 }
 
 export default App;
+```
+
+### Autenticação
+
+```shell
+amplify add auth
+```
+
+```shell
+amplify push
+```
+
+```javascript
+import './App.css';
+import { DataStore } from '@aws-amplify/datastore';
+import { Post } from './models';
+import { useEffect, useState } from 'react';
+import { PostCard } from './ui-components';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+
+function App() {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = async() => {
+    const data = await DataStore.query(Post);
+    setPosts(data);
+  }
+
+  useEffect(() => {
+    getPosts();
+  })
+
+  return (
+    <div className="App">
+      {posts.map(
+        post => <PostCard post={post} user={post.author} key={post.id} />
+      )}
+    </div>
+  );
+}
+
+export default withAuthenticator(App);
 ```
 
 ### Resources

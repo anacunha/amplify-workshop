@@ -1,6 +1,6 @@
-# Full Stack Application with AWS Amplify - Workshop
+# Aplicação Full Stack com AWS Amplify
 
-Esse workshop é baseado no [AWS Amplify Fullstack Workshop](https://github.com/aspittel/amplify-workshop) da [Ali Spittel](https://twitter.com/aspittel).
+Este conteúdo é baseado no [AWS Amplify Fullstack Workshop](https://github.com/aspittel/amplify-workshop) da [Ali Spittel](https://twitter.com/aspittel).
 
 ## O que vamos construir?
 

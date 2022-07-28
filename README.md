@@ -230,9 +230,9 @@ O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns
 | Username   | Photo                                                                                      |
 | ---------- | ------------------------------------------------------------------------------------------ |
 | anacunha   | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Ana.jpg        |
-| boris      | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Boris.jpg      |
-| perola     | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Perola.jpg     |
-| tempestade | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/Tempestade.jpg |
+| boris      | https://raw.githubusercontent.com/anacunha/amplify-workshop/main/pictures/Boris.jpg        |
+| perola     | https://raw.githubusercontent.com/anacunha/amplify-workshop/main/pictures/Perola.jpg       |
+| tempestade | https://raw.githubusercontent.com/anacunha/amplify-workshop/main/pictures/Tempestade.jpg   |
 
 #### Posts
 
@@ -241,9 +241,9 @@ O Amplify nos permite criar dados através do Amplify Studio. Vamos criar alguns
 | ---------- | ------------------------------- | ---------- | -------------- | ------------ |
 | anacunha   | Meetup do AWS UG Blumenau hoje! | 2022/07/06 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-meetup.jpg | IMAGE        |
 | anacunha   | Almoço no Seu Porco! 🐷         | 2022/07/06 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-almoco.jpg                | IMAGE        |
-| boris      | Relaxando no tapete ergonômico  | 2022/07/05 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-relaxando.jpg               | IMAGE        |
-| perola     | Sono de beleza 😴               | 2022/07/04 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-sono.jpg               | IMAGE        |
-| tempestade | Solzinho matinal ☀️             | 2022/07/03 | https://raw.githubusercontent.com/anacunha/amplify-workshop/update/pictures/post-sol.jpg               | IMAGE        |
+| boris      | Me estoy relajando mientras trabajas  | 2022/07/05 | https://raw.githubusercontent.com/anacunha/amplify-workshop/main/pictures/post-relaxando.jpg               | IMAGE        |
+| perola     | Sueño de belleza 😴              | 2022/07/04 | https://raw.githubusercontent.com/anacunha/amplify-workshop/main/pictures/post-sono.jpg               | IMAGE        |
+| tempestade | Sol de mañana ☀️             | 2022/07/03 | https://raw.githubusercontent.com/anacunha/amplify-workshop/main/pictures/post-sol.jpg               | IMAGE        |
 
 ### UI Library
 
